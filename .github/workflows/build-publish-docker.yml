@@ -26,4 +26,5 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push Fabric tools docker image
         run: |
+          echo "${{ github.repository }}"
           ./build.sh --push
