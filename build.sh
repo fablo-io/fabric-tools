@@ -43,4 +43,4 @@ build_and_push_tools() {
 }
 
 
-build_and_push_tools
+build_and_push_tools "$@"
