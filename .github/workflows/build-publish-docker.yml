@@ -14,6 +14,9 @@ jobs:
         with:
           driver: docker-container
 
+      - name: Verify Buildx environment
+        run: docker buildx ls
+
       - name: Build and push Fabric tools docker image
         run: |
           ./build.sh --push
