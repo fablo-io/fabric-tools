@@ -24,11 +24,10 @@ build_and_push_tools() {
     esac
 
     if [ "${1:-''}" = "--push" ]; then
-        docker buildx build \
+        docker build \
             --build-arg FABRIC_VERSION=3.0.0 \
             --build-arg ARCH="$arch" \
             --build-arg PLATFORM="$platform" \
-            --platform linux/amd64,linux/arm64 \
             --tag "$TOOLS_IMAGE_BASE_NAME" \
             --push \
             "$HOME"
