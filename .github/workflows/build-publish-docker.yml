@@ -22,4 +22,4 @@ jobs:
 
       - name: Build and push Fabric tools docker image
         run: |
-          ./fablo-build.sh --push
+          ./build.sh --push
