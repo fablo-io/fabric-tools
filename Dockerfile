@@ -1,3 +1,5 @@
+FROM golang:1.25-bookworm AS go
+
 FROM ubuntu:22.04
 
 ARG TARGETARCH
@@ -8,11 +10,16 @@ ENV ARCH=${TARGETARCH}
 ENV PLATFORM=${TARGETOS}
 ENV BINARY_FILE=hyperledger-fabric-${TARGETOS}-${TARGETARCH}-${FABRIC_VERSION}.tar.gz
 
-RUN apt update && apt install -y \
+COPY --from=go /usr/local/go /usr/local/go
+ENV PATH="/usr/local/go/bin:${PATH}"
+
+RUN apt update && apt install --no-install-recommends -y \
     bash \
     curl \
     jq \
-    tzdata
+    tzdata \
+    ca-certificates && \
+    apt clean
 
 RUN mkdir -p /etc/hyperledger/fabric /var/hyperledger
 
